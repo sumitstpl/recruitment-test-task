@@ -21,7 +21,7 @@ export const Layout = ({ children }: Props) => (
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" color="inherit">
-          Total React
+          RealAdvisor Starter-Kit
         </Typography>
       </Toolbar>
     </AppBar>
