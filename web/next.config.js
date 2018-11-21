@@ -3,7 +3,7 @@
 
 let API_ENDPOINT = process.env.API_ENDPOINT;
 
-export const nextConfig = {
+const nextConfig = {
   serverRuntimeConfig: Object.freeze({
     // Will only be available on the server side
     // mySecret: 'secret'
