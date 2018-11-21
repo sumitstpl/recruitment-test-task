@@ -6,21 +6,32 @@ import { Property } from '../shared/Property';
 
 import type { propertyQuery } from './__generated__/propertyQuery.graphql';
 
-const PropertyPage = props => <Property property={props.data?.property} />;
+const PropertyPage = props => {
+return (<Property property={props.data?.properties} />);
+} 
 
 const NULL_PROPERTY_ID =
-  'UHJvcGVydHk6MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw';
+  'UHJvcGVydHk6NjY0NjUwZTYtZWNjYy0xMWU4LWJlM2YtMGI4ZWYxMDFmN2E0';
 
-const PropertyP = nextQuery<propertyQuery, { propertyId: string }>(ctx => ({
+const PropertyP = nextQuery<propertyQuery, null>(ctx => ({
   query: graphql`
-    query propertyQuery($propertyId: ID!) {
-      property: node(id: $propertyId) {
-        ...Property_property
+    query propertyQuery {
+      properties {
+        edges {
+          node {
+            id
+            livingSurface
+            landSurface
+            numberOfRooms
+            numberOfParkings
+            createdAt
+          }
+        }
       }
     }
   `,
   variables: {
-    propertyId: ctx.query.propertyId || NULL_PROPERTY_ID,
+    propertyId: ctx.query.propertyId,
   },
   cacheStrategy: 'cache-first',
 }))(PropertyPage);
